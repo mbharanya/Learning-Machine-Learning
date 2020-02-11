@@ -42,7 +42,7 @@ To figure out the if we're _over-_ or _underfitting_ we can calculate the _mean 
 val_predictions = iowa_model.predict(val_X)
 val_mae = mean_absolute_error(val_predictions, val_y)
 ```
-Explore with different `max_leaf_nodes`(affects the depth) and choose the best size. If you find it you can use it to get better predictions:
+Explore using different `max_leaf_nodes`(affects the depth) and choose the best size. If you find it you can use it to get better predictions:
 ```python
 iowa_model = DecisionTreeRegressor(max_leaf_nodes=100, random_state=1)
 iowa_model.fit(train_X, train_y)
@@ -51,3 +51,21 @@ val_mae = mean_absolute_error(val_predictions, val_y)
 ```
 
 There are also other models like `RandomForestRegressor`, `DecisionTreeRegressor` is actually quite outdated.
+
+## Deep Learning
+|Expression|Description|
+|----------|-----------|
+|Tensor|Matrix with `n` dimensions ![tensor](tensor.png)|
+|Convolution / Filter|Small tensor, that can be multiplied over a small section of the main image. Multiply it with the values in the matrix in the area that you want to check. High values=more likely that what you're searching|
+
+About the size of convolutions:  
+```
+While any one convolution measures only a single pattern, there are more possible convolutions that can be created with large sizes. So there are also more patterns that can be captured with large convolutions.
+
+For example, it's possible to create a 3x3 convolution that filters for bright pixels with a dark one in the middle. There is no configuration of a 2x2 convolution that would capture this.
+
+On the other hand, anything that can be captured by a 2x2 convolution could also be captured by a 3x3 convolution.
+
+Does this mean powerful models require extremely large convolutions? Not necessarily. In the next lesson, you will see how deep learning models put together many convolutions to capture complex patterns... including patterns to complex to be captured by any single convolution.
+```
+https://www.kaggle.com/dansbecker/building-models-from-convolutions
