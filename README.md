@@ -1,6 +1,8 @@
 # Machine Learning Notes
 
 ## Kaggle Introduction
+From [here](https://www.kaggle.com/learn/intro-to-machine-learning)  
+
 The target value that you want to find out is called `y`.  
 The input value(s) are called `X`.  
 To figure out `X` you decide which features of the dataset could be interesting to predict the value that you want. (Door color is not correlated with housing price, number of rooms is)
