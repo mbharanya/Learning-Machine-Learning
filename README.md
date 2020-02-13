@@ -69,3 +69,8 @@ On the other hand, anything that can be captured by a 2x2 convolution could also
 Does this mean powerful models require extremely large convolutions? Not necessarily. In the next lesson, you will see how deep learning models put together many convolutions to capture complex patterns... including patterns to complex to be captured by any single convolution.
 ```
 https://www.kaggle.com/dansbecker/building-models-from-convolutions
+
+## Transfer Learning
+Neural nets are bases on increasingly complex layers. The first layer will look for simple shapes, the next for more complex ones and so on. The last layer will produce the predictions. With transfer learning we can modify the last layer, without needing to recreate all the other ones.
+![transfer-learning-layers](transfer-learning-layers.png)
+The last layer before the prediction layer is a 1 dimensional tensor (vector)
