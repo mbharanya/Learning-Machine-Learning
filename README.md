@@ -75,3 +75,65 @@ Neural nets are bases on increasingly complex layers. The first layer will look 
 ![transfer-learning-layers](transfer-learning-layers.png)
 The last layer before the prediction layer is a 1 dimensional tensor (vector)
 
+
+When compiling a model you can specify the following arguments:
+
+- **optimizer** determines how we determine the numerical values that make up the model. So it can affect the resulting model and predictions
+- **loss** determines what goal we optimize when determining numerical values in the model. So it can affect the resulting model and predictions
+- **metrics** determines only what we print out while the model is being built, but it doesn't affect the model itself.
+
+```python
+from tensorflow.python.keras.applications import ResNet50
+from tensorflow.python.keras.models import Sequential
+from tensorflow.python.keras.layers import Dense, Flatten, GlobalAveragePooling2D
+
+# is the amount of choices that the output has (rotated, not-rotated)  
+num_classes = 2
+resnet_weights_path = '../input/resnet50/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5'
+
+# means the layers of the NN are in sequential order.  
+my_new_model = Sequential()
+# `include_top=False` exclude the layer that makes predictions  
+# `resnet_weights_path` does not include the weights for the last layer as well.  
+my_new_model.add(ResNet50(include_top=False, pooling='avg', weights=resnet_weights_path))
+# Add the dense layer that makes the predictions
+# softmax => probabilities
+my_new_model.add(Dense(num_classes, activation='softmax'))
+
+# Say not to train first layer (ResNet) model. It is already trained
+my_new_model.layers[0].trainable = False
+```
+
+This is for checking accuracy (from categorical crossentropy)
+```python
+my_new_model.compile(optimizer='sgd', loss='categorical_crossentropy', metrics=['accuracy'])
+```
+
+Keras has some nice utils to split folders into the categories that we need.
+```python
+from tensorflow.python.keras.applications.resnet50 import preprocess_input
+from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
+
+image_size = 224
+data_generator = ImageDataGenerator(preprocessing_function=preprocess_input)
+
+
+train_generator = data_generator.flow_from_directory(
+        '../input/urban-and-rural-photos/rural_and_urban_photos/train',
+        target_size=(image_size, image_size),
+        batch_size=24,
+        class_mode='categorical')
+
+validation_generator = data_generator.flow_from_directory(
+        '../input/urban-and-rural-photos/rural_and_urban_photos/val',
+        target_size=(image_size, image_size),
+        class_mode='categorical')
+
+my_new_model.fit_generator(
+        train_generator,
+        steps_per_epoch=3,
+        validation_data=validation_generator,
+        validation_steps=1)
+```
+
+## Data augmentation
