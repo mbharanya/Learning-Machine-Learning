@@ -53,10 +53,10 @@ val_mae = mean_absolute_error(val_predictions, val_y)
 There are also other models like `RandomForestRegressor`, `DecisionTreeRegressor` is actually quite outdated.
 
 ## Deep Learning
-|Expression|Description|
-|----------|-----------|
-|Tensor|Matrix with `n` dimensions ![tensor](tensor.png)|
-|Convolution / Filter|Small tensor, that can be multiplied over a small section of the main image. Multiply it with the values in the matrix in the area that you want to check. High values=more likely that what you're searching|
+ | Expression | Description | 
+ | ---------- | ----------- | 
+ | Tensor | Matrix with `n` dimensions ![tensor](tensor.png) | 
+ | Convolution / Filter | Small tensor, that can be multiplied over a small section of the main image. Multiply it with the values in the matrix in the area that you want to check. High values=more likely that what you're searching | 
 
 About the size of convolutions:  
 ```
@@ -74,3 +74,4 @@ https://www.kaggle.com/dansbecker/building-models-from-convolutions
 Neural nets are bases on increasingly complex layers. The first layer will look for simple shapes, the next for more complex ones and so on. The last layer will produce the predictions. With transfer learning we can modify the last layer, without needing to recreate all the other ones.
 ![transfer-learning-layers](transfer-learning-layers.png)
 The last layer before the prediction layer is a 1 dimensional tensor (vector)
+
