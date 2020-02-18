@@ -55,7 +55,7 @@ There are also other models like `RandomForestRegressor`, `DecisionTreeRegressor
 ## Deep Learning
  | Expression | Description | 
  | ---------- | ----------- | 
- | Tensor | Matrix with `n` dimensions ![tensor](tensor.png) | 
+ | Tensor | Matrix with `n` dimensions <img src="tensor.png" width=150> | 
  | Convolution / Filter | Small tensor, that can be multiplied over a small section of the main image. Multiply it with the values in the matrix in the area that you want to check. High values=more likely that what you're searching | 
 
 About the size of convolutions:  
