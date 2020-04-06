@@ -137,3 +137,14 @@ my_new_model.fit_generator(
 ```
 
 ## Data augmentation
+Images can be flipped or shifted to increase the training data, Keras helps us do that:
+```python
+data_generator_with_aug = ImageDataGenerator(preprocessing_function=preprocess_input,
+                                   horizontal_flip=True,
+                                   width_shift_range = 0.2,
+                                   height_shift_range = 0.2)
+```
+
+Validation is usually only done with the base data _not_ the augmented one.
+
+## stochastic gradient descent and back-propagation
