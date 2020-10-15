@@ -1,6 +1,6 @@
 # Machine Learning Notes
 
-## Kaggle Introduction
+# Kaggle Introduction
 From [here](https://www.kaggle.com/learn/intro-to-machine-learning)  
 
 The target value that you want to find out is called `y`.  
@@ -147,4 +147,43 @@ data_generator_with_aug = ImageDataGenerator(preprocessing_function=preprocess_i
 
 Validation is usually only done with the base data _not_ the augmented one.
 
-## stochastic gradient descent and back-propagation
+
+# Kaggle: Intermediate Machine Learning
+https://www.kaggle.com/alexisbcook/introduction
+
+## Missing values
+> Imputation fills in the missing values with some number
+
+Sklearn has a `SimpleImputer` already, which just imputes the mean value:
+```python
+from sklearn.impute import SimpleImputer
+
+# Imputation
+my_imputer = SimpleImputer()
+imputed_X_train = pd.DataFrame(my_imputer.fit_transform(X_train))
+imputed_X_valid = pd.DataFrame(my_imputer.transform(X_valid))
+
+# Imputation removed column names; put them back
+imputed_X_train.columns = X_train.columns
+imputed_X_valid.columns = X_valid.columns
+
+print("MAE from Approach 2 (Imputation):")
+print(score_dataset(imputed_X_train, imputed_X_valid, y_train, y_valid))
+```
+
+```python
+imputer = SimpleImputer()
+imputer.fit(X_test)
+final_X_test = pd.DataFrame(imputer.fit_transform(X_test))
+
+final_X_test.columns = X_test.columns
+
+# Drop columns that we found to contain no data
+final_X_test = final_X_test.drop(cols_with_missing, axis=1)
+
+# Fill in the line below: get test predictions
+preds_test = model.predict(final_X_test)
+```
+
+## Categorical Variables
+>Consider a survey that asks how often you eat breakfast and provides four options: "Never", "Rarely", "Most days", or "Every day". In this case, the data is categorical, because responses fall into a fixed set of categories.
