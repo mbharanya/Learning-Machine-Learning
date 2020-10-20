@@ -187,3 +187,16 @@ preds_test = model.predict(final_X_test)
 
 ## Categorical Variables
 >Consider a survey that asks how often you eat breakfast and provides four options: "Never", "Rarely", "Most days", or "Every day". In this case, the data is categorical, because responses fall into a fixed set of categories.
+
+
+Label Encoding: assign a value (int for example), to each unique value, sometimes this can be ordering like
+>"Never" (0) < "Rarely" (1) < "Most days" (2) < "Every day" (3).
+You need to make sure that the training data also contains entries for each unique value that will appear in the real world data.
+Solution would be to write a custom Label encoder, or simply drop the problematic columns.
+
+
+One-Hot Encoding:
+categorical variables without an intrinsic ranking are defined as nominal variables (Yellow can not be more or less green)
+![one-hot-encoding](one-hot-encoding.png)
+
+> the number of unique entries of a categorical variable as the **cardinality** of that categorical variable.  For instance, the `'Street'` variable has cardinality 2.
